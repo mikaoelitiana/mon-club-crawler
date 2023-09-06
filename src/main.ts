@@ -3,10 +3,28 @@ import { PlaywrightCrawler } from "crawlee";
 import { users } from "./schema.ts";
 import db from "./db.ts";
 import { sql } from "drizzle-orm";
+import https from "https";
 
 interface Member {
   email: string;
 }
+
+const notify = async () => {
+  const url = new URL(process.env.PIPEDREAM_WORKFLOW_URL || "");
+  const data = JSON.stringify({});
+  const request = https.request({
+    hostname: url.host,
+    port: url.port,
+    path: url.pathname,
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Content-Length": data.length,
+    },
+  });
+  request.write(data);
+  request.end();
+};
 
 const crawler = new PlaywrightCrawler({
   async requestHandler({ page, log }) {
@@ -35,6 +53,7 @@ const crawler = new PlaywrightCrawler({
         .insert(users)
         .values(emails.map((email) => ({ email })))
         .onConflictDoNothing();
+      await notify();
     }
   },
 });
