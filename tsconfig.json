@@ -5,8 +5,9 @@
     "target": "ES2022",
     "outDir": "dist",
     "noUnusedLocals": false,
-    "lib": ["DOM"],
-    "skipLibCheck": true
+    "lib": ["DOM", "es2020"],
+    "skipLibCheck": true,
+    "moduleResolution": "node"
   },
   "include": ["./src/**/*"],
   "exclude": ["node_modules/**/*"]
