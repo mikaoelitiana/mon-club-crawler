@@ -12,6 +12,7 @@
     },
     "devDependencies": {
         "@apify/tsconfig": "^0.1.0",
+        "@types/better-sqlite3": "^7.6.4",
         "@types/node": "^18.0.0",
         "drizzle-kit": "^0.19.13",
         "ts-node": "^10.8.0",
