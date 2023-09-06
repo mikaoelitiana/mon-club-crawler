@@ -1,5 +1,7 @@
 services:
   crawler:
-    build: .
+    build:
+      context: .
+      env_file: ./.env
     volumes:
       - ./sqlite.db:/home/myuser/dist/sqlite.db
