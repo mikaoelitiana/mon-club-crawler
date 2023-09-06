@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { PlaywrightCrawler } from "crawlee";
-import { users } from "./schema.ts";
-import db from "./db.ts";
+import { users } from "./schema";
+import db from "./db";
 import { sql } from "drizzle-orm";
 import https from "https";
 

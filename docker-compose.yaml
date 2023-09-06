@@ -1,0 +1,5 @@
+services:
+  crawler:
+    build: .
+    volumes:
+      - ./sqlite.db:/home/myuser/dist/sqlite.db
