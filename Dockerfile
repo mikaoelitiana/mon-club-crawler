@@ -24,6 +24,9 @@ FROM apify/actor-node-playwright-chrome:18
 # Copy only built JS files from builder image
 COPY --from=builder --chown=myuser /home/myuser/dist ./dist
 
+# Copy DB
+COPY --from=builder --chown=myuser /home/myuser/sqlite.db ./
+
 # Copy just package.json and package-lock.json
 # to speed up the build using Docker layer cache.
 COPY --chown=myuser package*.json ./
@@ -38,7 +41,7 @@ RUN npm --quiet set progress=false \
     && echo "Node.js version:" \
     && node --version \
     && echo "NPM version:" \
-    && npm --version
+    && npm --version 
 
 # Next, copy the remaining files and directories with the source code.
 # Since we do this after NPM install, quick build will be really fast
