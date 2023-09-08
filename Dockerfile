@@ -31,6 +31,8 @@ COPY --from=builder --chown=myuser /home/myuser/sqlite.db ./
 # to speed up the build using Docker layer cache.
 COPY --chown=myuser package*.json ./
 
+RUN npx playwright install
+
 # Install NPM packages, skip optional and development dependencies to
 # keep the image small. Avoid logging too much and print the dependency
 # tree for debugging
